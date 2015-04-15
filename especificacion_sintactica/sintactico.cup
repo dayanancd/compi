@@ -130,9 +130,9 @@ repeat_stmt ::= REPEAT stmt_seq:cuerpo UNTIL exp:prueba
 ;
 assign_stmt ::= ID:variable ASSIGN exp:ex 
 ;
-read_stmt ::= READ ID:variable SEMI
+read_stmt ::= READ ID:variable 
 ;
-write_stmt ::= WRITE exp:ex SEMI
+write_stmt ::= WRITE exp:ex 
 ;
 
 for_stmt ::= FOR LPAREN assign_stmt:inici SEMI exp:com SEMI assign_stmt:paso RPAREN stmt_seq:cuerpo END 
@@ -143,12 +143,11 @@ return_stmt ::= RETURN ID:variable SEMI
 call_func ::= ID:variable LPAREN args:argumentos RPAREN SEMI 
                 | assign_stmt LPAREN args:argumentos RPAREN SEMI 
 ;
-exp ::= simple_exp:exI OR simple_exp:exD	
+exp  ::= simple_exp:exI OR simple_exp:exD	
                 | simple_exp:exI AND simple_exp:exD	  
                 | simple_exp:exI RT simple_exp:exD	  
                 | simple_exp:exI LT simple_exp:exD	
-		| simple_exp:exI EQ simple_exp:exD	
-
+		| simple_exp:exI EQ simple_exp:exD
 		| simple_exp:exI MENEQ simple_exp:exD	
                 | simple_exp:exI MAYEQ simple_exp:exD	
 
@@ -161,7 +160,7 @@ simple_exp ::= simple_exp:exI PLUS term:exD
 ;
 term ::= term:exI TIMES factor:exD 
             | term:exI OVER factor:exD 
-            | factor:ex 
+            | factor:fac 
 ;
 factor ::= LPAREN exp:ex RPAREN 
             | NUM:valor
